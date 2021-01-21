@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newstarlab.vaccinebooking.mapper.VaccinumBookingMapper">
+  <resultMap id="BaseResultMap" type="com.newstarlab.vaccinebooking.pojo.VaccinumBooking">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="medicarecard" jdbcType="VARCHAR" property="medicarecard" />
+    <result column="credentialstype" jdbcType="VARCHAR" property="credentialstype" />
+    <result column="credentialsno" jdbcType="VARCHAR" property="credentialsno" />
+    <result column="phoneno" jdbcType="VARCHAR" property="phoneno" />
+    <result column="homeaddress" jdbcType="VARCHAR" property="homeaddress" />
+    <result column="workaddress" jdbcType="VARCHAR" property="workaddress" />
+    <result column="doctorname" jdbcType="VARCHAR" property="doctorname" />
+    <result column="injectdate" jdbcType="VARCHAR" property="injectdate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, sex, medicarecard, credentialstype, credentialsno, phoneno, homeaddress, 
+    workaddress, doctorname, injectdate
+  </sql>
+  <select id="selectByExample" parameterType="com.newstarlab.vaccinebooking.pojo.VaccinumBookingExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_vaccinum_booking
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_vaccinum_booking
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_vaccinum_booking
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.newstarlab.vaccinebooking.pojo.VaccinumBookingExample">
+    delete from t_vaccinum_booking
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.newstarlab.vaccinebooking.pojo.VaccinumBooking">
+    insert into t_vaccinum_booking (id, name, sex, 
+      medicarecard, credentialstype, credentialsno, 
+      phoneno, homeaddress, workaddress, 
+      doctorname, injectdate)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{medicarecard,jdbcType=VARCHAR}, #{credentialstype,jdbcType=VARCHAR}, #{credentialsno,jdbcType=VARCHAR}, 
+      #{phoneno,jdbcType=VARCHAR}, #{homeaddress,jdbcType=VARCHAR}, #{workaddress,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{injectdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newstarlab.vaccinebooking.pojo.VaccinumBooking">
+    insert into t_vaccinum_booking
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="medicarecard != null">
+        medicarecard,
+      </if>
+      <if test="credentialstype != null">
+        credentialstype,
+      </if>
+      <if test="credentialsno != null">
+        credentialsno,
+      </if>
+      <if test="phoneno != null">
+        phoneno,
+      </if>
+      <if test="homeaddress != null">
+        homeaddress,
+      </if>
+      <if test="workaddress != null">
+        workaddress,
+      </if>
+      <if test="doctorname != null">
+        doctorname,
+      </if>
+      <if test="injectdate != null">
+        injectdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="medicarecard != null">
+        #{medicarecard,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialstype != null">
+        #{credentialstype,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialsno != null">
+        #{credentialsno,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        #{phoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="homeaddress != null">
+        #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="workaddress != null">
+        #{workaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="injectdate != null">
+        #{injectdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.newstarlab.vaccinebooking.pojo.VaccinumBookingExample" resultType="java.lang.Long">
+    select count(*) from t_vaccinum_booking
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_vaccinum_booking
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicarecard != null">
+        medicarecard = #{record.medicarecard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credentialstype != null">
+        credentialstype = #{record.credentialstype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credentialsno != null">
+        credentialsno = #{record.credentialsno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneno != null">
+        phoneno = #{record.phoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeaddress != null">
+        homeaddress = #{record.homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workaddress != null">
+        workaddress = #{record.workaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        doctorname = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.injectdate != null">
+        injectdate = #{record.injectdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_vaccinum_booking
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER},
+      medicarecard = #{record.medicarecard,jdbcType=VARCHAR},
+      credentialstype = #{record.credentialstype,jdbcType=VARCHAR},
+      credentialsno = #{record.credentialsno,jdbcType=VARCHAR},
+      phoneno = #{record.phoneno,jdbcType=VARCHAR},
+      homeaddress = #{record.homeaddress,jdbcType=VARCHAR},
+      workaddress = #{record.workaddress,jdbcType=VARCHAR},
+      doctorname = #{record.doctorname,jdbcType=VARCHAR},
+      injectdate = #{record.injectdate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newstarlab.vaccinebooking.pojo.VaccinumBooking">
+    update t_vaccinum_booking
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="medicarecard != null">
+        medicarecard = #{medicarecard,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialstype != null">
+        credentialstype = #{credentialstype,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialsno != null">
+        credentialsno = #{credentialsno,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        phoneno = #{phoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="homeaddress != null">
+        homeaddress = #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="workaddress != null">
+        workaddress = #{workaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        doctorname = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="injectdate != null">
+        injectdate = #{injectdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newstarlab.vaccinebooking.pojo.VaccinumBooking">
+    update t_vaccinum_booking
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      medicarecard = #{medicarecard,jdbcType=VARCHAR},
+      credentialstype = #{credentialstype,jdbcType=VARCHAR},
+      credentialsno = #{credentialsno,jdbcType=VARCHAR},
+      phoneno = #{phoneno,jdbcType=VARCHAR},
+      homeaddress = #{homeaddress,jdbcType=VARCHAR},
+      workaddress = #{workaddress,jdbcType=VARCHAR},
+      doctorname = #{doctorname,jdbcType=VARCHAR},
+      injectdate = #{injectdate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
