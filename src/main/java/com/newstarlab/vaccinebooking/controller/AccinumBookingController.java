@@ -6,6 +6,7 @@ import com.newstarlab.vaccinebooking.pojo.VaccinumBookingExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
+=======
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+>>>>>>> cbe9018b1d9c6b178df46b6ea66f22d72aa61961
 
 /**
  * @Author: freedom
@@ -25,13 +31,21 @@ public class AccinumBookingController {
     VaccinumBookingMapper vaccinumBookingMapper;
     @Autowired
     VaccinumBookingExample vaccinumBookingExample;
+<<<<<<< HEAD
     //@CrossOrigin(origins = "http://localhost:8081")
     @CrossOrigin(origins = "http://localhost:8081")
+=======
+
+    @CrossOrigin(origins = "http://localhost:8082")
+>>>>>>> cbe9018b1d9c6b178df46b6ea66f22d72aa61961
     @GetMapping(value = "/findAll")
     public List<VaccinumBookingExample> findAll(){
         //① selectByPrimaryKey()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cbe9018b1d9c6b178df46b6ea66f22d72aa61961
         VaccinumBooking user = vaccinumBookingMapper.selectByPrimaryKey("1"); //相当于select * from user where id = 100
 
 //② selectByExample() 和 selectByExampleWithBLOGs()
@@ -47,6 +61,7 @@ public class AccinumBookingController {
 
        return (List<VaccinumBookingExample>) list;
     }
+<<<<<<< HEAD
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/insertRecord")
     public void insertRecord(VaccinumBooking vaccinumBooking){
@@ -66,4 +81,6 @@ public class AccinumBookingController {
            System.out.println("插入失败");
        }
     }
+=======
+>>>>>>> cbe9018b1d9c6b178df46b6ea66f22d72aa61961
 }
