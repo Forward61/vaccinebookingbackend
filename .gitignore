@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 !**/src/main/resources/*.yml
 !**/src/main/resources/*.propertiess
-!**/src/main/resources/application.yml
+
 ### STS ###
 .apt_generated
 .classpath
@@ -33,3 +33,7 @@ build/
 
 ### VS Code ###
 .vscode/
+!/src/main/resources/application.yml
+src/main/resources/static/
+src/main/resources/templates/
+!/src/main/resources/application.yml
