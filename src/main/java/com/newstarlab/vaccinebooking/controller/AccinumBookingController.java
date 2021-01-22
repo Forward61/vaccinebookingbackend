@@ -30,7 +30,6 @@ public class AccinumBookingController {
     VaccinumBookingMapper vaccinumBookingMapper;
     @Autowired
     VaccinumBookingExample vaccinumBookingExample;
-    //@CrossOrigin(origins = "http://localhost:8082")
 
     //@CrossOrigin(origins = "http://localhost:8082")
     @RequestMapping(value = "/vb/findAll")
