@@ -110,4 +110,21 @@ public class VaccinumBooking {
     public void setInjectdate(String injectdate) {
         this.injectdate = injectdate == null ? null : injectdate.trim();
     }
+
+    @Override
+    public String toString() {
+        return "VaccinumBooking{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", medicarecard='" + medicarecard + '\'' +
+                ", credentialstype='" + credentialstype + '\'' +
+                ", credentialsno='" + credentialsno + '\'' +
+                ", phoneno='" + phoneno + '\'' +
+                ", homeaddress='" + homeaddress + '\'' +
+                ", workaddress='" + workaddress + '\'' +
+                ", doctorname='" + doctorname + '\'' +
+                ", injectdate='" + injectdate + '\'' +
+                '}';
+    }
 }
