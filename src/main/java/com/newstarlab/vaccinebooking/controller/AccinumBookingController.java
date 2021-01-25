@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -28,28 +29,31 @@ public class AccinumBookingController {
 
     @Autowired
     VaccinumBookingMapper vaccinumBookingMapper;
-    @Autowired
-    VaccinumBookingExample vaccinumBookingExample;
+    //@Autowired
+    //VaccinumBookingExample vaccinumBookingExample;
 
     //@CrossOrigin(origins = "http://localhost:8082")
     @RequestMapping(value = "/vb/findAll")
     public List<VaccinumBookingExample> findAll(VaccinumBooking vaccinumBooking){
-
+        VaccinumBookingExample vaccinumBookingExample = new VaccinumBookingExample();
         VaccinumBookingExample.Criteria criteria = vaccinumBookingExample.createCriteria();
 
         if(StringUtils.isNotBlank(vaccinumBooking.getName())){
-            //criteria.andNameEqualTo(vaccinumBooking.getName());
-            vaccinumBookingExample.or().andNameEqualTo(vaccinumBooking.getName());
+            criteria.andNameEqualTo(vaccinumBooking.getName());
+            //vaccinumBookingExample.or().andNameEqualTo(vaccinumBooking.getName());
         }
         if (StringUtils.isNoneBlank(vaccinumBooking.getPhoneno())){
-            vaccinumBookingExample.or().andPhonenoEqualTo(vaccinumBooking.getPhoneno());
+            criteria.andPhonenoEqualTo(vaccinumBooking.getPhoneno());
+            //vaccinumBookingExample.or().andPhonenoEqualTo(vaccinumBooking.getPhoneno());
         }
         if (StringUtils.isNotBlank(vaccinumBooking.getCredentialsno())){
-            vaccinumBookingExample.or().andCredentialsnoLike(vaccinumBooking.getCredentialsno());
+            criteria.andCredentialsnoEqualTo(vaccinumBooking.getCredentialsno());
+            //vaccinumBookingExample.or().andCredentialsnoLike(vaccinumBooking.getCredentialsno());
 
         }
         if (StringUtils.isNotBlank(vaccinumBooking.getHomeaddress())){
-            vaccinumBookingExample.or().andHomeaddressLike(vaccinumBooking.getHomeaddress());
+            criteria.andHomeaddressEqualTo(vaccinumBooking.getHomeaddress());
+            //vaccinumBookingExample.or().andHomeaddressLike(vaccinumBooking.getHomeaddress());
         }
         System.out.println("vaccinumBooking 的值："+vaccinumBooking.toString());
         List<?>list = vaccinumBookingMapper.selectByExample(vaccinumBookingExample);
